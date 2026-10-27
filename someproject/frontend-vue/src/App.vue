@@ -10,18 +10,17 @@ const toastStore = useToastStore();
   <div class="app">
     <Header />
     <main class="main">
-      <router-view />
+      <router-view /> <!-- Вот тут используется роутер -->
     </main>
     <Footer />
-
-    <!-- Уведомления -->
+    
     <div class="toast-container">
       <div 
         v-for="t in toastStore.toasts" 
         :key="t.id" 
         :class="['toast', `toast-${t.type}`]"
       >
-        {{ t.type === 'success' ? '✅' : '⚠️' }} {{ t.message }}
+        {{ t.type === 'success' ? '' : '' }} {{ t.message }}
       </div>
     </div>
   </div>

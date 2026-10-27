@@ -28,10 +28,10 @@ class Booking(models.Model):
     phone = models.CharField('Телефон', max_length=20)
     travelers_count = models.IntegerField('Туристов', default=1)
     created_at = models.DateTimeField(auto_now_add=True)
-    
-    # Генерация номера брони при сохранении
+    booking_number = models.CharField('Номер брони', max_length=20, blank=True, null=True)
+   
     def save(self, *args, **kwargs):
-        if not self.pk: # Если это новая запись
+        if not self.pk: 
             import random
             self.booking_number = f"TD-{random.randint(10000000, 99999999)}"
         super().save(*args, **kwargs)

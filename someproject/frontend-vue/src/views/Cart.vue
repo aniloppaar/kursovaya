@@ -8,40 +8,58 @@ const router = useRouter();
 
 <template>
   <div class="container section">
-    <h1 class="section-title">Корзина</h1>
-    
+    <h1 class="section-title">Ваша корзина</h1>
+
+  
     <div v-if="cartStore.cart.length === 0" class="empty-cart">
-      <h2>🛒 Корзина пуста</h2>
+      <h2>В корзине пока пусто</h2>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">Самое время выбрать идеальное путешествие.</p>
       <router-link to="/tours" class="btn btn-primary">Перейти к турам</router-link>
     </div>
 
-    <template v-else>
-      <div class="cart-list">
+    <div v-else class="cart-layout">
+   
+      <div class="cart-items">
         <div v-for="tour in cartStore.cart" :key="tour.id" class="cart-item">
-          <img :src="tour.image" :alt="tour.title" />
-          <div class="cart-item-info">
+          <img :src="tour.image" :alt="tour.title" class="cart-img" />
+          
+          <div class="cart-info">
             <h3>{{ tour.title }}</h3>
-            <p>📍 {{ tour.country }}, {{ tour.city }}</p>
-            <p>🗓️ {{ tour.duration }} дней</p>
+            <p class="cart-location">{{ tour.country }}, {{ tour.city }}</p>
+            <p class="cart-duration"> {{ tour.duration }} дней</p>
           </div>
-          <div class="cart-item-right">
-            <span class="price">{{ tour.price.toLocaleString() }} ₽</span>
-            <button class="btn btn-danger btn-sm" @click="cartStore.removeFromCart(tour.id)">
+
+          <div class="cart-actions">
+            <span class="cart-price">{{ tour.price.toLocaleString() }} ₽</span>
+            <button class="btn-remove" @click="cartStore.removeFromCart(tour.id)">
               Удалить
             </button>
           </div>
         </div>
       </div>
 
-      <div class="cart-total">
-        <h2>Итого: {{ cartStore.totalPrice.toLocaleString() }} ₽</h2>
-        <div class="cart-total-actions">
-          <button class="btn btn-outline" @click="cartStore.clearCart()">Очистить</button>
-          <button class="btn btn-primary btn-lg" @click="router.push('/checkout')">
-            Оформить заказ →
-          </button>
+      <aside class="cart-summary">
+        <h3>Итог заказа</h3>
+        
+        <div class="summary-row">
+          <span>Туров в корзине:</span>
+          <span>{{ cartStore.cart.length }} шт.</span>
         </div>
-      </div>
-    </template>
+        
+        <div class="summary-row total-row">
+          <span>Общая стоимость:</span>
+          <strong>{{ cartStore.totalPrice.toLocaleString() }} ₽</strong>
+        </div>
+
+        <button class="btn btn-primary btn-lg checkout-btn" @click="router.push('/checkout')">
+          Перейти к оформлению
+        </button>
+        
+        <button class="btn btn-outline clear-btn" @click="cartStore.clearCart()">
+          Очистить корзину
+        </button>
+      </aside>
+
+    </div>
   </div>
 </template>

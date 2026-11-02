@@ -551,3 +551,485 @@ body {
     gap: 15px;
   }
 }
+/* =========================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ "О КОМПАНИИ"
+   ========================================= */
+
+.about-header {
+  max-width: 800px;
+  margin: 0 auto 80px auto;
+  text-align: center;
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* --- Статистика (Карточки) --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 100px;
+}
+
+.stat-card {
+  background-color: var(--bg-secondary);
+  padding: 40px 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  background-color: var(--bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  transform: translateY(-5px);
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.stat-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Преимущества --- */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.advantage {
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+}
+
+.adv-number {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.advantage h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.advantage p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* --- Адаптивность для страницы О нас --- */
+@media (max-width: 992px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .advantages-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   СТИЛИ ДЛЯ ДЕТАЛЬНОЙ СТРАНИЦЫ ТУРА
+   ========================================= */
+
+.back-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 30px;
+  padding: 0;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--text-main);
+}
+
+.tour-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.detail-image {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.tour-info-col h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -1px;
+  margin: 15px 0;
+  line-height: 1.2;
+}
+
+.tour-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+}
+
+.tour-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.tour-rating {
+  font-weight: 500;
+}
+
+.tour-location {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.tour-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.tour-features {
+  list-style: none;
+  margin-bottom: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.tour-features li {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.tour-features li span {
+  color: var(--text-muted);
+}
+
+.tour-booking-box {
+  background-color: var(--bg-secondary);
+  padding: 30px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.price-value {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 992px) {
+  .tour-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .detail-image {
+    height: 400px;
+  }
+  .tour-booking-box {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+  }
+}
+/* =========================================
+   СТИЛИ ДЛЯ КОРЗИНЫ
+   ========================================= */
+
+.empty-cart {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 50px;
+  align-items: start;
+}
+
+/* Список туров */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.cart-info h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.cart-location, .cart-duration {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.cart-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.cart-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-remove:hover {
+  color: #d32f2f;
+}
+
+/* Блок Итого */
+.cart-summary {
+  background-color: var(--bg-secondary);
+  padding: 30px;
+  border-radius: var(--radius);
+  position: sticky;
+  top: 100px;
+}
+
+.cart-summary h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.total-row {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-main);
+  font-size: 1.1rem;
+}
+
+.total-row strong {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.clear-btn {
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+  .cart-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cart-img {
+    width: 100%;
+    height: 200px;
+  }
+  .cart-actions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.tour-includes, .tour-excludes {
+  margin-bottom: 30px;
+  background-color: var(--bg-secondary);
+  padding: 25px;
+  border-radius: var(--radius);
+}
+
+.tour-includes h3, .tour-excludes h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.include-list, .exclude-list {
+  list-style: none;
+}
+
+.include-list li, .exclude-list li {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-main);
+}
+
+.check-icon {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.cross-icon {
+  color: #ef4444;
+  font-weight: bold;
+}
+.tour-itinerary, .tour-hotel, .tour-important {
+  margin-bottom: 30px;
+}
+
+.tour-itinerary h3, .tour-hotel h3, .tour-important h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.itinerary-content p {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.tour-hotel p {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.tour-important p {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.tour-includes, .tour-excludes {
+  margin-bottom: 30px;
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: var(--radius);
+}
+
+.tour-includes h3, .tour-excludes h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.include-list li, .exclude-list li {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.check-icon { color: #10b981; font-weight: bold; }
+.cross-icon { color: #ef4444; font-weight: bold; }

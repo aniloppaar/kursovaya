@@ -14,7 +14,7 @@ class Tour(models.Model):
     price = models.IntegerField('Цена (₽)')
     duration = models.IntegerField('Длительность (дней)')
     rating = models.FloatField('Рейтинг', default=5.0)
-    image = models.URLField('Ссылка на фото')
+    image = models.ImageField('Фотография', upload_to='tours/', blank=True, null=True)
     description = models.TextField('Описание')
     category = models.CharField('Категория', max_length=20, choices=CATEGORY_CHOICES, default='beach')
     included = models.TextField('Что включено в стоимость', blank=True, help_text="Каждую услугу пишите с новой строки")
@@ -47,7 +47,7 @@ class Booking(models.Model):
 class Destination(models.Model):
     title = models.CharField('Название', max_length=100)
     tour_count = models.CharField('Количество туров', max_length=50)
-    image = models.URLField('Ссылка на фото')
+    image = models.ImageField('Фотография', upload_to='destinations/', blank=True, null=True)
     order = models.IntegerField('Порядок', default=0)
 
     class Meta:

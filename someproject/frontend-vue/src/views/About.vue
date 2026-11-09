@@ -1,10 +1,10 @@
 <script setup>
-// В будущем здесь можно добавить загрузку команды с бэкенда
+
 </script>
 
 <template>
   <div class="container section">
-    <!-- Заголовок и описание -->
+
     <div class="about-header">
       <span class="hero-label">Философия бренда</span>
       <h1 class="section-title">О компании TravelDream</h1>
@@ -15,7 +15,7 @@
       </p>
     </div>
 
-    <!-- Блок со статистикой -->
+   
     <div class="stats">
       <div class="stat-card">
         <h3>50 000+</h3>

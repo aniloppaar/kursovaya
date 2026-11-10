@@ -7,4 +7,5 @@ export const api = axios.create({
 
 export const getTours = (params = {}) => api.get('/tours/', { params });
 export const getTourById = (id) => api.get(`/tours/${id}/`);
-export const createBooking = (data) => api.post('/bookings/', data);
+export const createBooking = (data) => api.post('/bookings/', data);  
+export const getDestinations = () => api.get('/destinations/');

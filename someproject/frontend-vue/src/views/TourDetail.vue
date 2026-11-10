@@ -63,51 +63,48 @@ const handleBook = () => {
             <p>{{ tour.description }}</p>
           </div>
 
-          <!-- Блок 1: Программа тура -->
-          <div class="tour-itinerary" v-if="tour.itinerary">
+          <div class="tour-itinerary" v-if="tour.program && tour.program.length > 0">
             <h3>Программа тура</h3>
             <div class="itinerary-content">
-              <p v-for="(line, index) in tour.itinerary.split('\n')" :key="index">
-                {{ line }}
+              <p v-for="day in tour.program" :key="day.id">
+                <strong>День {{ day.day_number }}:</strong> {{ day.title }}. {{ day.description }}
               </p>
             </div>
           </div>
 
-          <!-- Блок 2: Варианты размещения (Отели) -->
-          <div class="tour-hotel" v-if="tour.hotel_info">
-            <h3>Варианты размещения</h3>
-            <p v-for="(line, index) in tour.hotel_info.split('\n')" :key="index">
-              🏨 {{ line }}
-            </p>
-          </div>
+          <template v-if="tour.details">
+            <div class="tour-hotel" v-if="tour.details.hotel_info">
+              <h3>Варианты размещения</h3>
+              <p v-for="(line, index) in tour.details.hotel_info.split('\n')" :key="index">
+                🏨 {{ line }}
+              </p>
+            </div>
 
-          <!-- Блок 3: Что включено -->
-          <div class="tour-includes" v-if="tour.included">
-            <h3>Что включено в стоимость:</h3>
-            <ul class="include-list">
-              <li v-for="(item, index) in tour.included.split('\n')" :key="'inc-'+index">
-                <span class="check-icon">✓</span> {{ item }}
-              </li>
-            </ul>
-          </div>
+            <div class="tour-includes" v-if="tour.details.included">
+              <h3>Что включено в стоимость:</h3>
+              <ul class="include-list">
+                <li v-for="(item, index) in tour.details.included.split('\n')" :key="'inc-'+index">
+                  <span class="check-icon">✓</span> {{ item }}
+                </li>
+              </ul>
+            </div>
 
-          <!-- Блок 4: Оплачивается отдельно -->
-          <div class="tour-excludes" v-if="tour.not_included">
-            <h3>Оплачивается отдельно:</h3>
-            <ul class="exclude-list">
-              <li v-for="(item, index) in tour.not_included.split('\n')" :key="'exc-'+index">
-                <span class="cross-icon">✕</span> {{ item }}
-              </li>
-            </ul>
-          </div>
+            <div class="tour-excludes" v-if="tour.details.not_included">
+              <h3>Оплачивается отдельно:</h3>
+              <ul class="exclude-list">
+                <li v-for="(item, index) in tour.details.not_included.split('\n')" :key="'exc-'+index">
+                  <span class="cross-icon">✕</span> {{ item }}
+                </li>
+              </ul>
+            </div>
 
-          <!-- Блок 5: Важная информация -->
-          <div class="tour-important" v-if="tour.important_info">
-            <h3>Важная информация</h3>
-            <p v-for="(line, index) in tour.important_info.split('\n')" :key="index">
-              ℹ️ {{ line }}
-            </p>
-          </div>
+            <div class="tour-important" v-if="tour.details.important_info">
+              <h3>Важная информация</h3>
+              <p v-for="(line, index) in tour.details.important_info.split('\n')" :key="index">
+                ℹ️ {{ line }}
+              </p>
+            </div>
+          </template>
 
           <div class="tour-booking-box">
             <div class="price-box">

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Tour(models.Model):
     CATEGORY_CHOICES = [
@@ -17,17 +18,35 @@ class Tour(models.Model):
     image = models.ImageField('Фотография', upload_to='tours/', blank=True, null=True)
     description = models.TextField('Описание')
     category = models.CharField('Категория', max_length=20, choices=CATEGORY_CHOICES, default='beach')
-    included = models.TextField('Что включено в стоимость', blank=True, help_text="Каждую услугу пишите с новой строки")
-    not_included = models.TextField('Не включено в стоимость', blank=True, help_text="Каждую услугу пишите с новой строки")
-    itinerary = models.TextField('Программа по дням', blank=True, help_text="Например: День 1 - Прилет, заселение...")
-    hotel_info = models.TextField('Информация об отелях', blank=True, help_text="Например: 5★ Rixos Premium...")
-    important_info = models.TextField('Важная информация', blank=True, help_text="Например: Виза, страховка...")
 
     def __str__(self):
         return self.title
 
+class TourDetail(models.Model):
+    tour = models.OneToOneField(Tour, on_delete=models.CASCADE, related_name='details')
+    included = models.TextField('Что включено в стоимость', blank=True, help_text="Каждую услугу пишите с новой строки")
+    not_included = models.TextField('Не включено в стоимость', blank=True, help_text="Каждую услугу пишите с новой строки")
+    hotel_info = models.TextField('Информация об отелях', blank=True, help_text="Например: 5★ Rixos Premium...")
+    important_info = models.TextField('Важная информация', blank=True, help_text="Например: Виза, страховка...")
+
+    def __str__(self):
+        return f"Детали тура: {self.tour.title}"
+
+class TourProgram(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='program')
+    day_number = models.IntegerField('День')
+    title = models.CharField('Заголовок', max_length=200)
+    description = models.TextField('Описание')
+
+    class Meta:
+        ordering = ['day_number']
+
+    def __str__(self):
+        return f"День {self.day_number} - {self.tour.title}"
+
 class Booking(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     customer_name = models.CharField('ФИО', max_length=200)
     email = models.EmailField('Email')
     phone = models.CharField('Телефон', max_length=20)

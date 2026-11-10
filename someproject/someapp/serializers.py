@@ -1,7 +1,20 @@
 from rest_framework import serializers
-from .models import Tour, Booking, Destination, Advantage, SiteSettings
+from .models import Tour, Booking, Destination, Advantage, SiteSettings, TourDetail, TourProgram
+
+class TourDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourDetail
+        fields = '__all__'
+
+class TourProgramSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourProgram
+        fields = '__all__'
 
 class TourSerializer(serializers.ModelSerializer):
+    details = TourDetailSerializer(read_only=True)
+    program = TourProgramSerializer(many=True, read_only=True)
+
     class Meta:
         model = Tour
         fields = '__all__'
@@ -25,7 +38,6 @@ class DestinationSerializer(serializers.ModelSerializer):
             representation['image'] = request.build_absolute_uri(instance.image.url)
         return representation
 
-# Остальные сериализаторы оставляем без изменений:
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
